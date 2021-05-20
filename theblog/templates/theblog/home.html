@@ -1,0 +1,26 @@
+{% extends 'theblog/base.html' %}
+
+
+{% block title %}
+    Long Kun
+{% endblock title %}
+    
+
+{% block content %}
+    <h1>Post</h1>
+    <ul>
+        {% for post in object_list %}
+        <li>
+            <a href="{% url 'article-detail' post.pk %}">
+                <p>{{post.title}} | {{post.author.first_name}}</p>
+            </a>
+            <p>{{post.author.last_name}} | {{post.author.email}}</p>
+            <br>
+            <p>{{post.body}}</p>
+        </li>
+        
+        {% endfor %}
+    </ul>
+{% endblock content %}
+    
+
