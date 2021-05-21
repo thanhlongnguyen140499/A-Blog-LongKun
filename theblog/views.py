@@ -1,8 +1,9 @@
+from django.urls.base import reverse_lazy
 from django.views.generic.base import View
 from theblog import models
 from theblog.models import Post
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import EditForm, PostForm
 
 # Create your views here.
@@ -12,7 +13,8 @@ from .forms import EditForm, PostForm
 class HomeView(ListView):
     model = Post
     template_name = 'theblog/home.html'
-
+    # ordering = ['-id'] # to sort arcoding by id 
+    ordering = ['-post_date']
 
 class ArticleDetailView(DetailView):
     model = Post
@@ -32,3 +34,9 @@ class UpdatePostView(UpdateView):
     form_class = EditForm  # if use form_class u must remove fields = (...)
     template_name = 'theblog/update_post.html'
     # fields = ('title', 'title_tag', 'author', 'body')
+
+
+class DeletePostView(DeleteView):
+    model = Post
+    template_name = 'theblog/delete_post.html'
+    success_url = reverse_lazy('home')
