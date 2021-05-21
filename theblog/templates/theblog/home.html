@@ -11,10 +11,11 @@
     <ul>
         {% for post in object_list %}
         <li>
+            <a href="{% url 'category' post.category %}"><p>{{post.category}}</p></a>
             <a href="{% url 'article-detail' post.pk %}">
-                <p>{{post.title}} | {{post.author.first_name}} </p>
+                <p>{{post.title}} | {{post.author.first_name}} | Added date: {{post.post_date}}</p>
             </a>
-            <p>Added date: {{post.post_date}}</p>
+            
             <p>{{post.author.last_name}} | {{post.author.email}} 
                 
                 {% if user.is_authenticated  %}
@@ -28,7 +29,7 @@
                 
             </p>
             <br>
-            <p>{{post.body|slice:":200"}}</p> 
+            <p>{{post.body|slice:":200"|safe}}</p> 
             <!-- |slice:"200" -> limit 200 words of post.body on screen home page -->
         </li>
         

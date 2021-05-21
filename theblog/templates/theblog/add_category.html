@@ -1,0 +1,23 @@
+{% extends 'theblog/base.html' %}
+
+{% block title %}
+    Add Category
+{% endblock title %}
+    
+
+{% block content %}
+    
+    <h1>Add Category Post</h1>
+    <br><br/>
+    <div class="form-group">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}   <!-- as_p : list the <p> cho cac fields, as_ul, as_table,... -->
+            <button class="btn btn-secondary">Add Category</button>
+        </form>
+    </div>
+    
+
+{% endblock content %}
+    
+
