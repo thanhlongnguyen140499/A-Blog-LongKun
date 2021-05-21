@@ -15,15 +15,21 @@
                 <p>{{post.title}} | {{post.author.first_name}} </p>
             </a>
             <p>Added date: {{post.post_date}}</p>
-            <p>{{post.author.last_name}} | {{post.author.email}} | 
-                <small>
-                    <a href="{% url 'update-post' post.pk %}">Edit</a>
-                    |
-                    <a href="{% url 'delete-post' post.pk %}">Delete</a>
-                </small>
+            <p>{{post.author.last_name}} | {{post.author.email}} 
+                
+                {% if user.is_authenticated  %}
+                | 
+                    <small>
+                        <a href="{% url 'update-post' post.pk %}">Edit</a>
+                        |
+                        <a href="{% url 'delete-post' post.pk %}">Delete</a>
+                    </small>    
+                {% endif %}
+                
             </p>
             <br>
-            <p>{{post.body}}</p>
+            <p>{{post.body|slice:":200"}}</p> 
+            <!-- |slice:"200" -> limit 200 words of post.body on screen home page -->
         </li>
         
         {% endfor %}
