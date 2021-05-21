@@ -1,8 +1,9 @@
 from django.views.generic.base import View
+from theblog import models
 from theblog.models import Post
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
-from .forms import PostForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from .forms import EditForm, PostForm
 
 # Create your views here.
 # def home(request):
@@ -24,3 +25,10 @@ class AddPostView(CreateView):
     template_name = 'theblog/add_post.html'
     # fields = '__all__'   # add all field into CreateView
     # fields = ('title', 'title_tag', 'body', 'author')   # as same as above line
+
+
+class UpdatePostView(UpdateView):
+    model = Post
+    form_class = EditForm  # if use form_class u must remove fields = (...)
+    template_name = 'theblog/update_post.html'
+    # fields = ('title', 'title_tag', 'author', 'body')

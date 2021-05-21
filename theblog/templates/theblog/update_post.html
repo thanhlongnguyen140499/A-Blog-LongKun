@@ -1,0 +1,23 @@
+{% extends 'theblog/base.html' %}
+
+{% block title %}
+    Update Post
+{% endblock title %}
+    
+
+{% block content %}
+    
+    <h1>Update Blog Post</h1>
+    <br><br/>
+    <div class="form-group">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}   <!-- as_p : list the <p> cho cac fields, as_ul, as_table,... -->
+            <button class="btn btn-secondary">Update</button>
+        </form>
+    </div>
+    
+
+{% endblock content %}
+    
+
