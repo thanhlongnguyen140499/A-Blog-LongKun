@@ -22,19 +22,22 @@ class PostForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = '__all__'
-        # fields = ('title', 'title_tag', 'author', 'category' ,'body')
+        fields = ('name',)
+        # fields = '__all__'
+    
+    def clean_name(self):
+            """
+            ensure that name is always lower case.
+            """
+            return self.cleaned_data['name'].lower()
 
-        # widgets = {
-        #     'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'This is title ...'}),
-        #     'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-        #     'author': forms.Select(attrs={'class': 'form-control'}),
-        #     'category': forms.Select(choices=choice_list,attrs={'class': 'form-control'}),
-        #     'body': forms.Textarea(attrs={'class': 'form-control'}),
-        # }
+    widget = {
+        'name': forms.TextInput(attrs={'class': 'form-control', 'style': 'text-transform:lowercase;'})
+    }
 
     
 class EditForm(forms.ModelForm):

@@ -28,20 +28,36 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          
+          {% if categories %}
+            <div class="btn-group">
+              <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="color: gray;">Action</button>
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                
+                {% for post in categories %}
+                  <li><a class="dropdown-item" href="{% url 'category' post.name|slugify %}">{{post}}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% else %}
+            <a class="nav-link" href="{% url 'category-list' %}">Category</a>
+          {% endif %}
+            
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
               {% if user.is_authenticated %}  
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'add-post' %}">Add Post</a>
                 </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'add-category' %}">Add Category</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                
                 {% else %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'register' %}">Register</a>

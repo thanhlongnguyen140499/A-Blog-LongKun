@@ -16,6 +16,13 @@ class HomeView(ListView):
     # ordering = ['-id'] # to sort arcoding by id 
     ordering = ['-post_date']
 
+    def get_context_data(self, **kwargs):
+        categories = Category.objects.all()
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['categories'] = categories
+        return context
+    
+
 class ArticleDetailView(DetailView):
     model = Post
     template_name = 'theblog/article_details.html'
@@ -34,9 +41,13 @@ class AddCategoryView(CreateView):
     template_name = 'theblog/add_category.html'
 
 def CategoryView(request, cats):
-    category_list = Post.objects.filter(category=cats)
-    return render(request, 'theblog/category.html', {'cats':cats.title(), 'category_list':category_list})
+    category_list = Post.objects.filter(category=cats.replace('-', ' '))
+    return render(request, 'theblog/category.html', {'cats':cats.title().replace('-', ' '), 'category_list':category_list})
 
+
+def CategoryListView(request):
+    category_menu_list = Category.objects.all()
+    return render(request, 'theblog/category_list.html', {'categories': category_menu_list})
 
 class UpdatePostView(UpdateView):
     model = Post
