@@ -14,6 +14,7 @@
             <div class="form-group">
                 <form action="" method="POST">
                     {% csrf_token %}
+                    {{ form.media}}
                     {{ form.as_p}}   <!-- as_p : list the <p> cho cac fields, as_ul, as_table,... -->
                     <button class="btn btn-secondary">Update</button>
                 </form>
