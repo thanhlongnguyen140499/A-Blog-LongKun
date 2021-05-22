@@ -9,17 +9,21 @@
     
     
     {% if user.is_authenticated %}
-        <h1>Delete Post?</h1>
-        <br><br/>
-        <div class="form-group">
-            <form action="" method="POST">
-                {% csrf_token %}
-                <p><b>Are you sure?</b></p>
-                Delete : {{post.title}} ?   
-                <p></p>
-                <button class="btn btn-danger">Delete</button>
-            </form>
-        </div>
+        {% if user.id == post.author.id %}
+            <h1>Delete Post?</h1>
+            <br><br/>
+            <div class="form-group">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <p><b>Are you sure?</b></p>
+                    Delete : {{post.title}} ?   
+                    <p></p>
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        {% else %}
+            <p>You're not allowcated here (You know it ... LOL :v)</p>
+        {% endif %}
     {% else %}
 
     <p>You're not allowcated here (You know it ... LOL :v)</p>

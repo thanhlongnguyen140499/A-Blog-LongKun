@@ -8,17 +8,21 @@
 {% block content %}
     
     {% if user.is_authenticated  %}
-        <h1>Update Blog Post</h1>
-        <br><br/>
-        <div class="form-group">
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form.as_p}}   <!-- as_p : list the <p> cho cac fields, as_ul, as_table,... -->
-                <button class="btn btn-secondary">Update</button>
-            </form>
-        </div>
+        {% if user.id == post.author.id %}
+            <h1>Update Blog Post</h1>
+            <br><br/>
+            <div class="form-group">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p}}   <!-- as_p : list the <p> cho cac fields, as_ul, as_table,... -->
+                    <button class="btn btn-secondary">Update</button>
+                </form>
+            </div>
+            {% else %}
+            <p>You're not allowed here ( and you know it ...LOL :v )</p>    
+        {% endif %}
     {% else %}
-        <p>You're allowed here ( and you know it ...LOL :v )</p>    
+        <p>You're not allowed here ( and you know it ...LOL :v )</p>    
     {% endif %}
 
 {% endblock content %}
