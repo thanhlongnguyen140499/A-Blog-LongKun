@@ -22,6 +22,7 @@ class Post(models.Model):
     title_tag = models.CharField(max_length=255, default='Long Kun Blogs')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=255, default='coding')
+    snippet = models.CharField(max_length=255)
     # body = models.TextField()
     body = RichTextField(blank=True, null=True)
     post_date = models.DateField(auto_now_add=datetime.now)
