@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.views.generic.edit import UpdateView
-from .forms import SignUpForm
+from .forms import SignUpForm, EditProfileForm
 # Create your views here.
 class UserRegisterView(CreateView):
     # form_class = UserCreationForm
@@ -14,7 +14,7 @@ class UserRegisterView(CreateView):
 
 
 class UserEditView(UpdateView):
-    form_class = UserChangeForm
+    form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
     success_url = reverse_lazy('home')
 
