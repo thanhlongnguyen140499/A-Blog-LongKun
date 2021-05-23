@@ -16,7 +16,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         # return reverse('article-detail', args=(str(self.id))) # Go to detail page
         return reverse('home')   # Khong can args -> vi trong urls khong co <int:pk>
-
+    
 class Post(models.Model):
     title = models.CharField(max_length=255)
     title_tag = models.CharField(max_length=255, default='Long Kun Blogs')
