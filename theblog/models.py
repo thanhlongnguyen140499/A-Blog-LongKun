@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.fields.related import OneToOneField
 from django.urls import reverse
 from datetime import datetime, date
 from ckeditor.fields import RichTextField
@@ -16,6 +17,15 @@ class Category(models.Model):
     def get_absolute_url(self):
         # return reverse('article-detail', args=(str(self.id))) # Go to detail page
         return reverse('home')   # Khong can args -> vi trong urls khong co <int:pk>
+
+
+class Profile(models.Model):
+    user = OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(default='bio of user')
+    
+    def __str__(self):
+        return str(self.user)
+
     
 class Post(models.Model):
     title = models.CharField(max_length=255)
