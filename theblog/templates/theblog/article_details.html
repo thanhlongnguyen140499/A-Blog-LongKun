@@ -1,5 +1,5 @@
 {% extends 'theblog/base.html' %}
-
+{% load static %}
 
 {% block title %}
     {{post.title_tag}}
@@ -26,7 +26,7 @@
     <hr>
     
     {% if post.header_image %}
-        <img src="{{post.header_image.url}}" alt="" style="max-height: 400px; max-width: 400px;">    
+        <img src="{{post.header_image.url}}" alt="" style="max-height: 400px; max-width: 400px;">     
     {% endif %}
     <br>
     {{post.body|safe}}
@@ -61,7 +61,9 @@
               <div class="col-md-2">
                   
                   {% if post.author.profile.profile_pic %}
-                    <img src="{{post.author.profile.profile_pic.url}}" alt="" class="rounded" style="height: 200px; width: 150px;">      
+                        <img src="{{post.author.profile.profile_pic.url}}" alt="" class="rounded" style="height: 200px; width: 150px;">      
+                  {% else %}
+                        <img src="{% static 'theblog/images/no-avatar.png' %}" alt="" style="max-height: 200; max-width: 150px;">
                   {% endif %}
               </div>
               <div class="col-md-10">
