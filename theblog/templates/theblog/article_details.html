@@ -46,45 +46,78 @@
             <small>You must <a href="{% url 'login' %}">login</a> to like post</small>
         {% endif %}
         
-        
-
         {{total_likes}} Likes
 
-        
         <p>
             <br>
-            
+            <div class="card mb-3" >
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        {% if post.author.profile.profile_pic %}
+                                <img src="{{post.author.profile.profile_pic.url}}" alt="" class="rounded" style="height: 200px; width: 150px;">      
+                        {% else %}
+                                <img src="{% static 'theblog/images/no-avatar.png' %}" alt="" style="max-height: 200; max-width: 150px;">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            {% if post.author.first_name %}
+                                <h5 class="card-title">{{post.author.first_name}}</h5>    
+                            {% else %}
+                                <h5 class="card-title">First Name : Unknow</h5>    
+                            {% endif %}
+                            
+                            {% if post.author.profile.id  %}
+                                <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a>
+                            {% endif %}
+                            <p class="small text-muted">
+                                {% if post.author.profile.website_url %}
+                                    <a href="{{post.author.profile.website_url}}">Website</a> |    
+                                {% else %}
+                                    <a href="">Website |</a>
+                                {% endif %}
+                                
+                                {% if post.author.profile.fb_url %}
+                                    <a href="{{post.author.profile.fb_url}}">Facebook</a> |    
+                                {% else %}
+                                    <a href="">Facebook |</a>
+                                {% endif %}
+                                
+                                {% if post.author.profile.twitter_url %}
+                                    <a href="{{post.author.profile.twitter_url}}">Twitter</a> |
+                                {% else %}
+                                    <a href="">Twitter |</a>   
+                                {% endif %}
+                                
+                                {% if post.author.profile.instagram_url %}
+                                    <a href="{{post.author.profile.instagram_url}}">Instagram</a> |
+                                {% else %}
+                                    <a href="">Instagram |</a>  
+                                {% endif %}
+                                
+                                {% if post.author.profile.pinteres_url %}
+                                    <a href="{{post.author.profile.pinteres_url}}">Pinteres</a>
+                                {% else %}
+                                    <a href="">Pinteres</a>
+                                {% endif %}
+                            </p>
+                                {% if post.author.profile.bio %}   
+                                    <p class="card-text">{{post.author.profile.bio}}</p>
+                                {% endif %}
+                                {% if post.post_date %}
+                                    <p class="card-text"><small class="text-muted">{{post.post_date}}</small></p>
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>  
         </p>
         
-        <div class="card mb-3" >
-            <div class="row g-0">
-              <div class="col-md-2">
-                  
-                  {% if post.author.profile.profile_pic %}
-                        <img src="{{post.author.profile.profile_pic.url}}" alt="" class="rounded" style="height: 200px; width: 150px;">      
-                  {% else %}
-                        <img src="{% static 'theblog/images/no-avatar.png' %}" alt="" style="max-height: 200; max-width: 150px;">
-                  {% endif %}
-              </div>
-              <div class="col-md-10">
-                <div class="card-body">
-                  <h5 class="card-title">{{post.author.first_name}}</h5>
-                  <p class="small text-muted">
-                    <a href="{{post.author.profile.website_url}}">Website</a> |
-                    <a href="{{post.author.profile.fb_url}}">Facebook</a> |
-                    <a href="{{post.author.profile.twitter_url}}">Twitter</a> |
-                    <a href="{{post.author.profile.instagram_url}}">Instagram</a> |
-                    <a href="{{post.author.profile.pinteres_url}}">Pinteres</a>
-                  </p>
-                  <p class="card-text">{{post.author.profile.bio}}</p>
-                  <p class="card-text"><small class="text-muted">{{post.post_date}}</small></p>
-                </div>
-              </div>
-            </div>
-          </div>    
-
-
-        <p>
+        <!-- {% if post.author.profile %} -->
+        
+              
+        
+        <!-- {% endif %}         -->
             <br>
             <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
         </p>
