@@ -84,9 +84,28 @@
                 </button>
                 <ul class="dropdown-menu">
                   <li>
+                    {% if user.profile %}
+                      <a class="nav-link" href="{% url 'show_profile_page' user.profile.id %}" >
+                      Show Profile    
+                      </a>
+                      {% else %}
+                      <a class="nav-link" href="{% url 'create_profile_page' %}" >
+                        Create Profile    
+                        </a>
+                    {% endif %}
+                  </li>
+                  <li>
                     <a class="nav-link" href="{% url 'edit-profile' user.id %}" >
-                      Profile
+                      Edit Settings
                     </a>
+                  </li>
+                  <li>
+                    
+                    {% if user.profile %}
+                      <a class="nav-link" href="{% url 'edit_profile_page' user.profile.id %}" >
+                        Edit Profile
+                      </a>  
+                    {% endif %}
                   </li>
                   <li>
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>

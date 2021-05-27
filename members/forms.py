@@ -1,3 +1,4 @@
+from theblog.models import Profile
 from django.forms import fields
 from django.forms import widgets
 from members import models
@@ -5,6 +6,21 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm, Password
 from django.contrib.auth.models import User
 from django import forms
 from django.forms.widgets import CheckboxInput
+
+class CreateUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('bio', 'profile_pic', 'website_url', 'fb_url', 'twitter_url', 'instagram_url', 'pinterest_url')
+
+    widgets = {
+        'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'This is title ...'}),
+        'website_url': forms.TextInput(attrs={'class': 'form-control'}),
+        'fb_url': forms.TextInput(attrs={'class': 'form-control'}),
+        'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
+        'instagram_url': forms.TextInput(attrs={'class': 'form-control'}),
+        'pinterest_url': forms.TextInput(attrs={'class': 'form-control'}),        
+    }
+
 
 class PasswordChangingForm(PasswordChangeForm):
     old_password = forms.CharField(widget = forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
