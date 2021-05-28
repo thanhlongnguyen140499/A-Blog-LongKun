@@ -5,14 +5,18 @@
     Long Kun
 {% endblock title %}
     
-
+<style>
+    ul li a {
+        color: black;
+    }
+</style>
 {% block content %}
     <h1>Post</h1>
     <ul>
         {% for post in object_list %}
         <li>
             <a href="{% url 'article-detail' post.pk %}">
-                <p>{{post.title}}</p>
+                <p>{{post.id}}. {{post.title}}</p>
             </a>
             
             <div style="display: flex; margin-right: 10px;">

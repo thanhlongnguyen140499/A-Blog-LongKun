@@ -14,17 +14,35 @@
     
     <!-- Static file -->
     <link rel="stylesheet" href="{% static 'theblog/css/user_profile.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'theblog/css/main.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'theblog/css/util.css' %}" type="text/css">
+    <link rel="icon" type="image/png" href="{% static 'theblog/images/icons/favicon.ico' %}"/>
+
+	  <link rel="stylesheet" type="text/css" href="{% static 'theblog/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theblog/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theblog/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theblog/vendor/animate/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theblog/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theblog/vendor/animsition/css/animsition.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theblog/vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'theblog/vendor/daterangepicker/daterangepicker.css' %}">
     
     <title>
     {% block title %}
       Long Kun
     {% endblock title %}
-      </title>
+      </title>  
       <style>
         .main {
           margin-left: 50px;
           margin-right: 50px;
         }
+        .container-login100 {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background-image: url( "{% static 'theblog/images/bg-01.jpg' %}");
+    </style>
       </style>
   </head>
   <body class="body">
@@ -140,6 +158,20 @@
     <!-- Bootsrtap Template Profile -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Static Folder -->
+    <script src="{% static 'theblog/js/main.js' %}"></script>
+    
+	  <script src="{% static 'theblog/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'theblog/vendor/animsition/js/animsition.min.js' %}"></script>
+    <script src="{% static 'theblog/vendor/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'theblog/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'theblog/vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'theblog/vendor/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'theblog/vendor/daterangepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'theblog/vendor/countdowntime/countdowntime.js' %}"></script>
+  
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -25,7 +25,6 @@ class CreateProfilePageView(CreateView):
         return super().form_valid(form) 
         
 
-
 class EditProfilePageView(UpdateView):
     model = Profile
     template_name = 'registration/edit_user_profile.html'
