@@ -58,3 +58,15 @@ class Post(models.Model):
         # return reverse('article-detail', args=(str(self.id))) # Go to detail page
         return reverse('home')   # Khong can args -> vi trong urls khong co <int:pk>
 
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s %s" % (self.post.title, self.name)
+
+    def get_absolute_url(self):
+        return reverse('home')

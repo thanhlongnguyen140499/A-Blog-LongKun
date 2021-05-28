@@ -1,10 +1,10 @@
 from django.urls.base import reverse_lazy, reverse
 from django.views.generic.base import View
 from theblog import models
-from theblog.models import Post, Category
+from theblog.models import Comment, Post, Category
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .forms import EditForm, PostForm, CategoryForm
+from .forms import CommentForm, EditForm, PostForm, CategoryForm
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -56,6 +56,7 @@ class ArticleDetailView(DetailView):
         context['total_likes'] = total_likes
         return context
 
+
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
@@ -63,10 +64,24 @@ class AddPostView(CreateView):
     # fields = '__all__'   # add all field into CreateView
     # fields = ('title', 'title_tag', 'body', 'author')   # as same as above line
 
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'theblog/add_comment.html'
+
+    def form_valid(self, form):   # ex: bill create comment -> self : bill
+        form.instance.post_id = self.kwargs['pk'] 
+        return super().form_valid(form) 
+    
+    def get_success_url(self):
+        return reverse_lazy('article-detail',  kwargs={'pk': self.kwargs['pk']})
+
 class AddCategoryView(CreateView):
     model = Category
     form_class = CategoryForm
     template_name = 'theblog/add_category.html'
+
 
 def CategoryView(request, cats):
     category_list = Post.objects.filter(category=cats.replace('-', ' '))

@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 from django.forms import fields, widgets
-from .models import Post, Category
+from .models import Comment, Post, Category
 
 choices = Category.objects.all().values_list('name', 'name')
 choice_list = []
@@ -51,5 +51,16 @@ class EditForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'This is title ...'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             'category': forms.Select(choices=choice_list,attrs={'class': 'form-control'}),
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body')
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
