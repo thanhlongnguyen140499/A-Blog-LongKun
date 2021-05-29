@@ -8,17 +8,6 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
-class Category(models.Model):
-
-    name = models.CharField(max_length=255, default='coding')
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        # return reverse('article-detail', args=(str(self.id))) # Go to detail page
-        return reverse('home')   # Khong can args -> vi trong urls khong co <int:pk>
-
 
 class Profile(models.Model):
     user = OneToOneField(User, on_delete=models.CASCADE)
@@ -54,6 +43,16 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
+
+    def get_absolute_url(self):
+        # return reverse('article-detail', args=(str(self.id))) # Go to detail page
+        return reverse('home')   # Khong can args -> vi trong urls khong co <int:pk>
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255, default='coding')
+    def __str__(self):
+        return self.name
 
     def get_absolute_url(self):
         # return reverse('article-detail', args=(str(self.id))) # Go to detail page

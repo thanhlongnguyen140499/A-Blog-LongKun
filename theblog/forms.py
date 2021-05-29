@@ -3,10 +3,10 @@ from django.db import models
 from django.forms import fields, widgets
 from .models import Comment, Post, Category
 
-choices = Category.objects.all().values_list('name', 'name')
-choice_list = []
-for item in choices:
-    choice_list.append(item)
+# choices = Category.objects.all().values_list('name', 'name')
+# choice_list = []
+# for item in choices:
+#     choice_list.append(item)
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -19,10 +19,19 @@ class PostForm(forms.ModelForm):
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control', 'value':'', 'id':'elder', 'type':'hidden'}),
             # 'author': forms.Select(attrs={'class': 'form-control'}),
-            'category': forms.Select(choices=choice_list,attrs={'class': 'form-control'}),
+            # 'category': forms.Select(choices=choice_list,attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'snippet': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        choices = Category.objects.all().values_list('name','name')
+        choice_list = []
+
+        for item in choices:
+            choice_list.append(item)
+        self.fields['category'].choices = choice_list
 
 
 class CategoryForm(forms.ModelForm):
@@ -50,9 +59,18 @@ class EditForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'This is title ...'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-            'category': forms.Select(choices=choice_list,attrs={'class': 'form-control'}),
+            # 'category': forms.Select(choices=choice_list,attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            choices = Category.objects.all().values_list('name','name')
+            choice_list = []
+
+            for item in choices:
+                choice_list.append(item)
+            self.fields['category'].choices = choice_list
 
 
 class CommentForm(forms.ModelForm):
