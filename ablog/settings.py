@@ -129,3 +129,5 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 django_heroku.settings(locals())
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'

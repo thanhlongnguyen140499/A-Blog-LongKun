@@ -5,6 +5,7 @@ from django.urls import reverse
 from datetime import datetime, date
 from ckeditor.fields import RichTextField
 
+
 # Create your models here.
 
 class Category(models.Model):
