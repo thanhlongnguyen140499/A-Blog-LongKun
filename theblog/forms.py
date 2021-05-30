@@ -63,14 +63,14 @@ class EditForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            choices = Category.objects.all().values_list('name','name')
-            choice_list = []
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        choices = Category.objects.all().values_list('name','name')
+        choice_list = []
 
-            for item in choices:
-                choice_list.append(item)
-            self.fields['category'].choices = choice_list
+        for item in choices:
+            choice_list.append(item)
+        self.fields['category'].choices = choice_list
 
 
 class CommentForm(forms.ModelForm):
